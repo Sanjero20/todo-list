@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --background: #0d1117;
+  --black: #161b22;
+  --semi-black: #1d2224;
+  --icon-size: 1.5em;
+  /* --mono: 'Roboto Mono', monospace; */
+  /* --roboto: 'Roboto', sans-serif; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+li {
+  list-style-type: none;
+}
+
+.fa {
+  font-size: var(--icon-size);
+}
+
+body{
+  background-color: var(--background);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--black);
+  height: 60px;
+  font-size: 1.25em;
+  display: flex;
+  align-items: center;
+  /* border-bottom: 3px solid white; */
+}
+
+aside {
+  width: min(25%, 200px);
+  height: 100%;
+  background-color: var(--black);
+  border-top: 1px solid grey;
+  padding-top: 1em;
+  padding-left: 2em;
+}
+
+.header-logo {
+  padding-left: 0.75em;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nav-bar .links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.links > li{
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  cursor: pointer;
+}
+
+.projects > h2 {
+  margin-bottom: 5px;
+}
