@@ -40,7 +40,34 @@
       <!-- Modal Container aligned in the to do list -->
       <div class="modal">
         <div class="modal-container">
-          
+          <form id="input-todo">
+            <label for="title"> Title
+              <input type="text" name="title">
+            </label>
+
+            <label for="desc"> Description
+              <textarea name="desc" id=""></textarea>
+            </label>
+
+            <fieldset>
+              <label for="date">
+                <input type="date" name="date">
+              </label>
+              <label for="priority">
+                <select name="priority" id="priority">
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </label>
+            </fieldset>
+            
+            <fieldset class="form-btns">
+              <button id="cancel" type="button">Cancel</button>
+              <button id="submit" type="button">Submit</button>
+            </fieldset>
+            
+          </form>
         </div>
       </div>
       
