@@ -11,10 +11,9 @@
 </head>
 <body>
   <header>
-    <h1 class="header-logo">
-      Just Do It!!
-    </h1>
+    <h1 class="header-logo"> Just Do It!! </h1>
   </header>
+
   <div class="container">
     <aside class="side-bar">
       <nav class="nav-bar">
@@ -32,11 +31,24 @@
         </div>
       </nav>
     </aside>
-    <main class="todo-content">
-      <div class="todo-item"></div>
 
+    <!-- Change display of todo-content thru javascript -->
+    <main class="todo-content">
+      <!-- class="todo-item" -->
+      <button class="add-item"><i class="fa fa-plus"></i> Add Item</button>
+      
+      <!-- Modal Container aligned in the to do list -->
+      <div class="modal">
+        <div class="modal-container">
+          
+        </div>
+      </div>
+      
     </main>
   </div>
+
+  <div class="overlay"></div>
+
   <footer class="footer"> Copyright &copy; Sanjero 2022</footer>
 </body>
 </html>
