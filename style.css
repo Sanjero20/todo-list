@@ -3,8 +3,8 @@
 
 :root {
   --background: #0d1117;
+  --background: #f3f3f3;
   --black: #161b22;
-  --semi-black: #1d2224;
   --icon-size: 1.5em;
   /* --mono: 'Roboto Mono', monospace; */
   /* --roboto: 'Roboto', sans-serif; */
@@ -18,10 +18,15 @@
 }
 
 li {
+  padding: 5px;
+  color: black;
+  height: 2em;
   list-style-type: none;
+  border-radius: 5px;
 }
 
 .fa {
+  color: black;
   font-size: var(--icon-size);
 }
 
@@ -34,20 +39,29 @@ body{
 
 header {
   background-color: var(--black);
-  height: 60px;
+  padding: 10px 0;
   font-size: 1.25em;
   display: flex;
   align-items: center;
-  /* border-bottom: 3px solid white; */
+}
+
+footer {
+  background-color: var(--black);
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 200vh;
+  display: flex;
 }
 
 aside {
-  width: min(25%, 200px);
-  height: 100%;
-  background-color: var(--black);
-  border-top: 1px solid grey;
+  width: min(100%, 250px);
   padding-top: 1em;
-  padding-left: 2em;
+  border-right: 1px solid black;
 }
 
 .header-logo {
@@ -60,10 +74,19 @@ aside {
   gap: 20px;
 }
 
-.nav-bar .links{
+.nav-bar {
+  color: black;
+  margin: 0 auto;
+  width: 80%;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.nav-bar .links{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .links > li{
@@ -71,8 +94,30 @@ aside {
   align-items: center;
   gap: 0.75em;
   cursor: pointer;
+  transition: 300ms ease-in-out;
 }
 
-.projects > h2 {
+.links > li:hover {
+  transform: translateX(10%);
+}
+
+.projects > h3 {
+  color: black;
   margin-bottom: 5px;
+}
+
+/* To Do list contents here */
+.todo-content {
+  margin: 0 auto;
+  width: min(100%, 850px);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todo-item {
+  height: 50px;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
