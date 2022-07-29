@@ -1,0 +1,1 @@
+(()=>{"use strict";const s=document.querySelector(".add-item"),e=document.querySelector(".modal"),c=document.querySelector(".overlay");s.onclick=()=>{e.classList.add("show"),c.classList.add("show"),s.classList.add("hide")},c.onclick=()=>{e.classList.remove("show"),c.classList.remove("show"),s.classList.remove("hide")}})();
