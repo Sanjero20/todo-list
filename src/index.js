@@ -1,6 +1,12 @@
-import {openForm, closeForm, cancelInput} from "./modules/form";
+import {popupForm, getToDOList} from "./modules/form";
 
-// Form Event Listeners
-openForm()
-closeForm()
-cancelInput()
+// Form Event Listener
+popupForm();
+
+const home = document.querySelector('#home')
+home.onclick = () => {
+  const arr = getToDOList()
+
+  console.log(arr)
+}
+

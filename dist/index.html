@@ -18,9 +18,9 @@
     <aside class="side-bar">
       <nav class="nav-bar">
         <ul class="links">
-          <li><i class="fa fa-home" aria-hidden="true"></i> Home</li>
-          <li><i class="fa fa-calendar-o" aria-hidden="true"></i> Today</li>
-          <li><i class="fa fa-calendar" aria-hidden="true"></i> Upcoming</li>
+          <li id="home"><i class="fa fa-home" aria-hidden="true"></i> Home</li>
+          <li id="today"><i class="fa fa-calendar-o" aria-hidden="true"></i> Today</li>
+          <li id="upcoming"><i class="fa fa-calendar" aria-hidden="true"></i> Upcoming</li>
         </ul>
         <div class="projects">
           <h3>Projects</h3>
@@ -45,6 +45,7 @@
       <form id="input-todo">
         <label for="title"> Title
           <input type="text" name="title">
+          <p class="title-error-msg"></p>
         </label>
 
         <label for="desc"> Description
