@@ -4,6 +4,8 @@
   --background: #f3f3f3;
   --black: #161b22;
   --icon-size: 1.5em;
+
+  --popUp-speed: 300ms;
 }
 
 * {
@@ -168,22 +170,23 @@ aside {
 
 .overlay {
   z-index: 0;
-  transform: scale(0);
+  opacity: 0;
   position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.3);
-  pointer-events: auto;
+  pointer-events: none;
+  transition: all var(--popUp-speed) ease-in-out;
 }
 
 .overlay.show {
-  transform: scale(1);
+  opacity: 1;
   height: 100%;
   pointer-events: all;
 }
 
 .modal.show {
-  transition: all 300ms ease-in-out;
+  transition: all var(--popUp-speed) ease-in-out;
   transform: translate(-50%, -50%) scale(1);
 }
 
@@ -251,4 +254,14 @@ fieldset input {
 
 #submit {
   background-color: green;
+}
+
+/* Error Messages */
+.title-error-msg {
+  color: red;
+  font-size: 0.75em;
+}
+
+input[name="title"].error {
+  border: 1px solid red;
 }
