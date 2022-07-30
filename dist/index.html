@@ -14,7 +14,7 @@
     <h1 class="header-logo"> Just Do It!! </h1>
   </header>
 
-  <div class="container">
+  <section class="container">
     <aside class="side-bar">
       <nav class="nav-bar">
         <ul class="links">
@@ -36,43 +36,42 @@
     <main class="todo-content">
       <!-- class="todo-item" -->
       <button class="add-item"><i class="fa fa-plus"></i> Add Item</button>
-      
-      <!-- Modal Container aligned in the to do list -->
-      <div class="modal">
-        <div class="modal-container">
-          <form id="input-todo">
-            <label for="title"> Title
-              <input type="text" name="title">
-            </label>
-
-            <label for="desc"> Description
-              <textarea name="desc" id=""></textarea>
-            </label>
-
-            <fieldset>
-              <label for="date">
-                <input type="date" name="date">
-              </label>
-              <label for="priority">
-                <select name="priority" id="priority">
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </select>
-              </label>
-            </fieldset>
-            
-            <fieldset class="form-btns">
-              <button id="cancel" type="button">Cancel</button>
-              <button id="submit" type="button">Submit</button>
-            </fieldset>
-            
-          </form>
-        </div>
-      </div>
-      
     </main>
   </div>
+
+  <div class="modal">
+    <!-- Contains form stuff -->
+    <div class="modal-container">
+      <form id="input-todo">
+        <label for="title"> Title
+          <input type="text" name="title">
+        </label>
+
+        <label for="desc"> Description
+          <textarea name="desc" id="description"></textarea>
+        </label>
+
+        <fieldset>
+          <label for="date">
+            <input type="date" name="date">
+          </label>
+          <label for="priority">
+            <select name="priority" id="priority">
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low" selected="selected">Low</option>
+            </select>
+          </label>
+        </fieldset>
+        
+        <fieldset class="form-btns">
+          <button id="cancel" type="button">Cancel</button>
+          <button id="submit" type="button">Submit</button>
+        </fieldset>
+        
+      </form>
+    </div>
+  </section>
 
   <div class="overlay"></div>
 
