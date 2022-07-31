@@ -14,7 +14,7 @@
     <h1 class="header-logo"> Just Do It!! </h1>
   </header>
 
-  <section class="container">
+  <main class="container">
     <aside class="side-bar">
       <nav class="nav-bar">
         <ul class="links">
@@ -32,12 +32,14 @@
       </nav>
     </aside>
 
-    <!-- Change display of todo-content thru javascript -->
-    <main class="todo-content">
-      <!-- class="todo-item" -->
+    <section class="todo-content">
+      <div class="todo-list-data">
+        <!-- Add an item in the list thru JS -->
+        <div class="todo-item"></div>
+      </div>
       <button class="add-item"><i class="fa fa-plus"></i> Add Item</button>
-    </main>
-  </div>
+    </section>
+  </main>
 
   <div class="modal">
     <!-- Contains form stuff -->
@@ -72,7 +74,7 @@
         
       </form>
     </div>
-  </section>
+  </div>
 
   <div class="overlay"></div>
 
