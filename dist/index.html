@@ -14,7 +14,7 @@
 
   <main class="container">
     <div class="all-projects">
-      <h2 class="task-projects-title">My Projects</h2>
+      <h2 class="task-project-title">My Projects</h2>
       <ul class="task-projects">
         <li class="project-name active-project">Home</li>
         <li class="project-name">School</li>
@@ -33,7 +33,34 @@
       </form>
     </div>
 
-    <div class="todo-list"></div>
+    <div class="todo-list">
+      <div class="todo-header">
+        <h2 class="project-title">Project Title</h2>
+        <i id="delete-project" class="fa fa-times" aria-hidden="true"></i>
+      </div>
+
+      <div class="todo-body">
+        <div class="tasks">
+          <!-- insert tasks here  -->
+          <div class="task">
+            <div>
+              <p>watch something</p>
+            </div>
+            <div class="task-options">
+              <i class="edit-task fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i class="delete-task fa fa-trash" aria-hidden="true"></i>
+            </div>
+          </div>
+          <!-- sample task end -->      
+        </div>
+      </div>
+
+      <div class="task-options">
+        <button class="add-task">Add Task</button>
+        <!-- open a pop up modal -->
+      </div>
+
+    </div>
 
   </main>
   
