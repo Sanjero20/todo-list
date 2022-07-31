@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root {
-  --background: #f3f3f3;
+  --white: #f3f3f3;
   --black: #161b22;
   --icon-size: 1.5em;
 
@@ -11,262 +11,86 @@
 * {
   margin: 0;
   padding: 0;
-  /* color: white; */
   font-family: 'Poppins', sans-serif;
 }
 
-li {
-  padding: 5px;
-  height: 2em;
-  list-style-type: none;
-  border-radius: 5px;
-}
-
-.fa {
-  font-size: var(--icon-size);
-}
-
-body{
-  position: relative;
-  background-color: var(--background);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header, footer { color: white}
-
-header {
-  background-color: var(--black);
-  padding: 10px 0;
-  font-size: 1.25em;
-  display: flex;
-  align-items: center;
-}
-
+header, 
 footer {
+  text-align: center;
   background-color: var(--black);
-  padding: 10px 0;
-  text-align: center;
-}
-
-.container {
-  height: 200vh;
-  display: flex;
-}
-
-aside {
-  width: min(100%, 250px);
-  padding-top: 1em;
-  border-right: 1px solid black;
-}
-
-.header-logo {
-  padding-left: 0.75em;
-}
-
-.side-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.nav-bar {
-  margin: 0 auto;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.nav-bar .links{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.links > li{
-  display: flex;
-  align-items: center;
-  gap: 0.75em;
-  cursor: pointer;
-  transition: 300ms ease-in-out;
-}
-
-.links > li.active,
-.links > li:hover {
-  transform: translateX(10%);
-}
-
-.projects > h3 {
-  margin-bottom: 5px;
-}
-
-/* To Do list contents here */
-.todo-content {
-  padding: 1em;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.todo-list-data {
-  width: min(100%, 850px);
-}
-
-.todo-item {
-  width: 100%;
-  height: 50px;
-  border: 1px solid grey;
-  border-radius: 25px;
-}
-
-/* Button add item */
-.add-item {
-  margin-top: 0.5em;
   color: white;
-  background: var(--black);
-  padding: 10px;
-  width: 125px;
-  border: none;
-  border-radius: 25px;
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 10px;
-  transition: scale 100ms ease-in-out;
+  padding: 5px 0;
 }
 
-.add-item > .fa {
-  font-size: 2em;
-  color: white;
-}
-
-.add-item:hover {
-  transform: scale(1.05);
-}
-
-.add-item:active {
-  transform: scale(1);
-}
-
-/* Modal */
-.modal {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  pointer-events: auto;
-  transition: all 300ms ease-in-out;
-}
-
-.modal-container {
-  padding: 0.75em 0;
-  border-radius: 10px;
-  width: 300px;
-  height: 300px;
-  background-color: white;
-}
-
-.overlay {
-  z-index: 0;
-  opacity: 0;
-  position: absolute;
-  width: 100vw;
+body {
   height: 100vh;
-  background-color: rgb(0, 0, 0, 0.3);
-  pointer-events: none;
-  transition: all var(--popUp-speed) ease-in-out;
-}
-
-.overlay.show {
-  opacity: 1;
-  height: 100%;
-  pointer-events: all;
-}
-
-.modal.show {
-  transition: all var(--popUp-speed) ease-in-out;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.hide {
-  display: none;
-}
-
-/* Form */
-label {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  justify-content: space-between;
 }
 
-input {
-  padding: 5px;
-  width: 250px;
+header{
+  font-size: 3em;
+  font-weight: 700;
 }
 
-textarea[name='desc'] {
-  resize: none;
-  width: 250px;
-  height: 60px;
-  padding: 5px;
-}
-
-form {
-  width: 100%;
+main.container {
+  margin: 0 auto;
+  width: min(100%, 1000px);
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 5px;
+  background-color: grey;
+}
+.all-projects {
+  padding: 1em;
 }
 
-fieldset {
-  padding-top: 10px;
-  border: none;
-
-  display: flex;
-  gap: 10px;
+.project-name {
+  list-style-type: none;
 }
 
-fieldset input {
-  width: 150px;
-}
-
-#priority {
-  width: 90px;
-  height: 35px;
-}
-
-#cancel, #submit {
-  border: none;
-  padding: 10px 25px;
-  border-radius: 20px;
+.project-name:hover {
   color: white;
-  font-weight: bold;
 }
 
-#cancel {
-  background-color: red;
+.active-project {
+  font-weight: 700;
 }
 
-#submit {
-  background-color: green;
+#new-project {
+  display: flex;
 }
 
-/* Error Messages */
-.title-error-msg {
-  color: red;
-  font-size: 0.75em;
+.btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
 }
 
-input[name="title"].error {
-  border: 1px solid red;
+.btn.create {
+  margin-right: 0.25em;
+  font-size: 1.5em;
+}
+
+.new.project{
+  background: transparent;
+  color: white;
+  border: 0;
+  border-bottom: 1px solid black;
+  outline: none;
+  order: 2;
+
+  transition: border-bottom 150ms ease-in; 
+}
+
+.project::placeholder {
+  color: inherit;
+  opacity: 0.6;
+}
+
+.project:focus::placeholder {
+  opacity: 0.3;
+}
+
+.project:focus {
+  border-bottom-width: 2px ;
 }

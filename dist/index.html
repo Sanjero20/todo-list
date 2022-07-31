@@ -10,74 +10,33 @@
   <script src="main.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1 class="header-logo"> Just Do It!! </h1>
-  </header>
+  <header> Just Do It!! </header>
 
   <main class="container">
-    <aside class="side-bar">
-      <nav class="nav-bar">
-        <ul class="links">
-          <li id="home"><i class="fa fa-home" aria-hidden="true"></i> Home</li>
-          <li id="today"><i class="fa fa-calendar-o" aria-hidden="true"></i> Today</li>
-          <li id="upcoming"><i class="fa fa-calendar" aria-hidden="true"></i> Upcoming</li>
-        </ul>
-        <div class="projects">
-          <h3>Projects</h3>
-          <ul class="links">
-            <li><i class="fa fa-plus" aria-hidden="true"></i> Add Project</li>
-            <!-- Add more projects -->
-          </ul>
-        </div>
-      </nav>
-    </aside>
+    <div class="all-projects">
+      <h2 class="task-projects-title">My Projects</h2>
+      <ul class="task-projects">
+        <li class="project-name active-project">Home</li>
+        <li class="project-name">School</li>
+        <li class="project-name">Carreer</li>
+      </ul>
 
-    <section class="todo-content">
-      <div class="todo-list-data">
-        <!-- Add an item in the list thru JS -->
-        <div class="todo-item"></div>
-      </div>
-      <button class="add-item"><i class="fa fa-plus"></i> Add Item</button>
-    </section>
-  </main>
-
-  <div class="modal">
-    <!-- Contains form stuff -->
-    <div class="modal-container">
-      <form id="input-todo">
-        <label for="title"> Title
-          <input type="text" name="title">
-          <p class="title-error-msg"></p>
-        </label>
-
-        <label for="desc"> Description
-          <textarea name="desc" id="description"></textarea>
-        </label>
-
-        <fieldset>
-          <label for="date">
-            <input type="date" name="date">
-          </label>
-          <label for="priority">
-            <select name="priority" id="priority">
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low" selected="selected">Low</option>
-            </select>
-          </label>
-        </fieldset>
-        
-        <fieldset class="form-btns">
-          <button id="cancel" type="button">Cancel</button>
-          <button id="submit" type="button">Submit</button>
-        </fieldset>
-        
+      <!-- Input new project -->
+      <form action="" id="new-project">
+        <input
+          type="text"
+          class="new project"
+          placeholder="Add Project"
+          aria-label="Add Project"
+        />
+        <button class="btn create">+</button>
       </form>
     </div>
-  </div>
 
-  <div class="overlay"></div>
+    <div class="todo-list"></div>
 
+  </main>
+  
   <footer class="footer"> Copyright &copy; Sanjero 2022</footer>
 </body>
 </html>
