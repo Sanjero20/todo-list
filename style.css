@@ -52,11 +52,12 @@ main.container {
 }
 
 .project-name {
+  cursor: pointer;
   list-style-type: none;
 }
 
 .project-name:hover {
-  color: white;
+  transform: translateX(5%);
 }
 
 .active-project {
@@ -168,4 +169,8 @@ main.container {
   padding: 10px;
   width: 100px;
   border-radius: 20px;
+}
+
+.add-task:active {
+  transform: scale(0.9);
 }
