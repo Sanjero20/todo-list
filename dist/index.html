@@ -15,19 +15,20 @@
   <main class="container">
     <div class="all-projects">
       <h2 class="task-project-title">My Projects</h2>
-      <ul class="task-projects">
-        <li class="project-name active-project">Home</li>
+      <ul class="task-projects" data-projects>
+        <!-- <li class="project-name active-project">Home</li>
         <li class="project-name">School</li>
-        <li class="project-name">Carreer</li>
+        <li class="project-name">Carreer</li> -->
       </ul>
 
       <!-- Input new project -->
-      <form action="" id="new-project">
+      <form action="" id="new-project" data-new-project-form>
         <input
           type="text"
           class="new project"
           placeholder="Add Project"
           aria-label="Add Project"
+          data-new-project-input
         />
         <button class="btn create">+</button>
       </form>
@@ -36,7 +37,11 @@
     <div class="todo-list">
       <div class="todo-header">
         <h2 class="project-title">Project Title</h2>
-        <i id="delete-project" class="fa fa-times" aria-hidden="true"></i>
+        <i 
+          id="delete-project" 
+          class="fa fa-times" 
+          aria-hidden="true"
+          data-delete-project-btn></i>
       </div>
 
       <div class="todo-body">
