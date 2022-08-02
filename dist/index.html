@@ -43,18 +43,8 @@
       </div>
 
       <div class="todo-body">
-        <div class="tasks" data-task>
-          <!-- Contains all the task for a project -->
-          <div class="task">
-            <div>
-              <p>watch something</p>
-            </div>
-            <div class="task-options">
-              <i class="edit-task fa fa-pencil-square-o" aria-hidden="true"></i>
-              <i class="delete-task fa fa-trash" aria-hidden="true"></i>
-            </div>
-          </div>
-          <!-- sample task end -->      
+        <div class="tasks" data-tasks>
+          <!-- Contains all the task for a project -->      
         </div>
       </div>
 
@@ -64,9 +54,56 @@
       </div>
 
     </div>
-
   </main>
-  
   <footer class="footer"> Copyright &copy; Sanjero 2022</footer>
+
+  <!-- Modal Container aligned in the to do list -->
+  <div class="modal">
+    <div class="modal-container">
+
+      <form id="input-todo">
+        <label for="title"> Title
+          <input type="text" name="title" data-form-title>
+        </label>
+
+        <label for="desc"> Description
+          <textarea name="desc" id="" data-form-description></textarea>
+        </label>
+
+        <fieldset>
+          <label for="date">
+            <input type="date" name="date" data-form-due-date>
+          </label>
+          <label for="priority">
+            <select name="priority" id="priority" data-form-priority>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low" selected>Low</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset class="form-btns">
+          <button id="cancel" type="button">Cancel</button>
+          <button id="submit" type="button">Submit</button>
+        </fieldset>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="overlay "></div>
+
+  <template id="task-template">
+    <div class="task">
+      <p class="task-title">watch something</p>
+      <div class="task-options">
+        <p class="task-dueDate">No due date</p>
+        <i class="edit-task fa fa-pencil-square-o" aria-hidden="true"></i>
+        <i class="delete-task fa fa-trash" aria-hidden="true"></i>
+      </div>
+    </div>
+  </template>
+
 </body>
 </html>

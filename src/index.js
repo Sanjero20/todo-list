@@ -1,4 +1,5 @@
 import { loadProjectLists, saveProjectList, loadSelectedProject, saveSelectedProject} from "./saveLocal"
+import { openForm, closeForm, createProject, createTask } from "./form"
 
 // DOM Elements
 const projectsContainer = document.querySelector('[data-projects]')
@@ -6,10 +7,23 @@ const newProjForm = document.querySelector('[data-new-project-form]')
 const newProjInput = document.querySelector('[data-new-project-input]')
 const deleteProjBtn = document.querySelector('[data-delete-project-btn]')
 
+// Add Task Form Elements
+
+const formTitle = document.querySelector('[data-form-title]')
+const formDescription = document.querySelector('[data-form-description]')
+const formDueDate = document.querySelector('[data-form-due-date]')
+const formPriority = document.querySelector('[data-form-priority]')
+
 // To do list Elements
 const toDoListContainer = document.querySelector('[data-project-display-container]')
-const toDoListTitle = document.querySelector('[data-project-title]')
-const tasksContainer = document.querySelector('[data-tasks]')
+const toDoListTitle     = document.querySelector('[data-project-title]')
+const tasksContainer    = document.querySelector('[data-tasks]')
+
+const formCancelBtn = document.getElementById('cancel')
+const formSubmitBtn = document.getElementById('submit')
+
+// Template
+const taskTemplate = document.getElementById('task-template') 
 
 // local Storage keys
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects'
@@ -43,15 +57,21 @@ deleteProjBtn.addEventListener('click', (e) => {
   saveAndRender()
 })
 
-// functions
-function createProject(name) {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    task: [],
-  }
-}
+// Form Event Listener 
+formCancelBtn.addEventListener('click', (e) => {
+  closeForm()
+  resetForm()
+})
 
+formSubmitBtn.addEventListener('click', (e) => {
+  /*
+    get form values
+    create a new tasl
+    append new task to selectedProject tasks
+  */
+})
+
+// functions
 function saveAndRender() {
   saveProjectList(LOCAL_STORAGE_PROJECT_KEY, projects)
   saveSelectedProject(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY, selectedProjectID)
@@ -70,6 +90,7 @@ function render() {
   } else {
     toDoListContainer.style.display = ''
     toDoListTitle.innerText = selectedProject.name
+    clearElement(tasksContainer)
   }
 }
 
@@ -89,7 +110,16 @@ function renderProjectList() {
   })
 }
 
+function renderProjectTask(selectedProject) {
+  selectedProject.tasks.forEach(task => {
+    const taskElement = document.importNode(taskTemplate.content, true)
+    const taskTitle = taskElement.querySelector('.task-title')
+    const taskDueDate = taskElement.querySelector('.task-dueDate')
 
+    taskTitle.innerText = task.name
+    // tasksContainer.appendChild(taskElement)
+  })
+}
 
 function clearElement(element) {
   while (element.firstChild) {
@@ -97,5 +127,13 @@ function clearElement(element) {
   }
 }
 
+function resetForm() {
+  formTitle.value = ''
+  formDescription.value = ''
+  formDueDate.value = ''
+  formPriority.value = 'low'
+}
+
 // Driver Code
+openForm()
 render()
