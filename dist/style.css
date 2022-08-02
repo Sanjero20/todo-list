@@ -39,7 +39,7 @@ main.container {
   height: 100%;
   background-color: grey;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 20px;
 }
 
@@ -123,6 +123,10 @@ main.container {
 #delete-project {
   cursor: pointer;
   font-size: 1.75em;
+}
+
+#delete-project:hover {
+  transform: scale(1.1);
 }
 
 .todo-body {

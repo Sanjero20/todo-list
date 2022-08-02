@@ -6,6 +6,11 @@ const newProjForm = document.querySelector('[data-new-project-form]')
 const newProjInput = document.querySelector('[data-new-project-input]')
 const deleteProjBtn = document.querySelector('[data-delete-project-btn]')
 
+// To do list Elements
+const toDoListContainer = document.querySelector('[data-project-display-container]')
+const toDoListTitle = document.querySelector('[data-project-title]')
+const tasksContainer = document.querySelector('[data-tasks]')
+
 // local Storage keys
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects'
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProject'
@@ -55,6 +60,20 @@ function saveAndRender() {
 
 function render() {
   clearElement(projectsContainer)
+  renderProjectList()
+
+  // Tasks
+  const selectedProject = projects.find(project => project.id === selectedProjectID)
+
+  if (selectedProjectID == null) {
+    toDoListContainer.style.display = 'none'
+  } else {
+    toDoListContainer.style.display = ''
+    toDoListTitle.innerText = selectedProject.name
+  }
+}
+
+function renderProjectList() {
   projects.forEach(project => {
     // create element (sample: <li class="project-name></li>")
     const projElement = document.createElement('li')
@@ -69,6 +88,8 @@ function render() {
     projectsContainer.appendChild(projElement)
   })
 }
+
+
 
 function clearElement(element) {
   while (element.firstChild) {

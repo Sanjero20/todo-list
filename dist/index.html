@@ -16,9 +16,7 @@
     <div class="all-projects">
       <h2 class="task-project-title">My Projects</h2>
       <ul class="task-projects" data-projects>
-        <!-- <li class="project-name active-project">Home</li>
-        <li class="project-name">School</li>
-        <li class="project-name">Carreer</li> -->
+        <!-- Project list -->
       </ul>
 
       <!-- Input new project -->
@@ -34,9 +32,9 @@
       </form>
     </div>
 
-    <div class="todo-list">
+    <div class="todo-list" data-project-display-container>
       <div class="todo-header">
-        <h2 class="project-title">Project Title</h2>
+        <h2 class="project-title" data-project-title>Project Title</h2>
         <i 
           id="delete-project" 
           class="fa fa-times" 
@@ -45,8 +43,8 @@
       </div>
 
       <div class="todo-body">
-        <div class="tasks">
-          <!-- insert tasks here  -->
+        <div class="tasks" data-task>
+          <!-- Contains all the task for a project -->
           <div class="task">
             <div>
               <p>watch something</p>
