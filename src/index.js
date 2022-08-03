@@ -1,5 +1,6 @@
 import { loadProjectLists, saveProjectList, loadSelectedProject, saveSelectedProject} from "./saveLocal"
 import { openForm, closeForm, createProject, createTask } from "./form"
+import hamburgerMenu from "./hamburger"
 
 // DOM Elements
 const projectsContainer = document.querySelector('[data-projects]')
@@ -34,7 +35,10 @@ const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId'
 let projects = loadProjectLists((LOCAL_STORAGE_PROJECT_KEY))
 let selectedProjectID = loadSelectedProject(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY)
 
-// Event Listeners
+// Event Listener
+hamburgerMenu()
+openForm()
+
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.tagName.toLowerCase() === 'li') {
     selectedProjectID = e.target.dataset.projID
@@ -186,5 +190,4 @@ function resetForm() {
 }
 
 // Driver Code
-openForm()
 render()
