@@ -8,7 +8,6 @@ const newProjInput = document.querySelector('[data-new-project-input]')
 const deleteProjBtn = document.querySelector('[data-delete-project-btn]')
 
 // Add Task Form Elements
-
 const formTitle = document.querySelector('[data-form-title]')
 const formDescription = document.querySelector('[data-form-description]')
 const formDueDate = document.querySelector('[data-form-due-date]')
@@ -20,8 +19,9 @@ const toDoListContainer = document.querySelector('[data-project-display-containe
 const toDoListTitle     = document.querySelector('[data-project-title]')
 const tasksContainer    = document.querySelector('[data-tasks]')
 
+const formAddTask   = document.getElementById('input-todo')
 const formCancelBtn = document.getElementById('cancel')
-const formSubmitBtn = document.getElementById('submit')
+// const formSubmitBtn = document.getElementById('submit')
 
 // Template
 const taskTemplate = document.getElementById('task-template') 
@@ -38,6 +38,23 @@ let selectedProjectID = loadSelectedProject(LOCAL_STORAGE_SELECTED_PROJECT_ID_KE
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.tagName.toLowerCase() === 'li') {
     selectedProjectID = e.target.dataset.projID
+    saveAndRender()
+  }
+})
+
+tasksContainer.addEventListener('click', (e) => {
+  if (e.target.tagName.toLowerCase() === 'div') {
+    const selectedtaskID = e.target.dataset.taskID
+    const selectedProject = projects.find(project => project.id === selectedProjectID)
+    const selectedTask = selectedProject.tasks.find(task => task.id === selectedtaskID)
+    console.log(selectedTask)
+    // show pop up modal that contains the task information
+  }
+
+  if (e.target.className.toLowerCase() === 'delete-task fa fa-trash') {
+    const selectedtaskID = e.target.dataset.taskID
+    const selectedProject = projects.find(project => project.id === selectedProjectID)
+    selectedProject.tasks = selectedProject.tasks.filter(task => task.id !== selectedtaskID)
     saveAndRender()
   }
 })
@@ -64,7 +81,8 @@ formCancelBtn.addEventListener('click', (e) => {
   resetForm()
 })
 
-formSubmitBtn.addEventListener('click', (e) => {
+formAddTask.addEventListener('submit', (e) => {
+  e.preventDefault()
   if (formTitle.value == null || formTitle.value === '') {
     formTitle.classList.add('error')
     formTitleError.innerHTML = 'Please include a title'
@@ -134,11 +152,16 @@ function renderProjectList() {
 function renderProjectTask(selectedProject) {
   selectedProject.tasks.forEach(task => {
     const taskElement = document.importNode(taskTemplate.content, true)
+    const taskDiv = taskElement.querySelector('div')
     const taskTitle = taskElement.querySelector('.task-title')
     const taskDueDate = taskElement.querySelector('.task-dueDate')
 
-    const editBtn = document.querySelector('.edit-task')
-    const deleteBtn = document.querySelector('.delete-task')
+    const editBtn = taskElement.querySelector('.edit-task')
+    const deleteBtn = taskElement.querySelector('.delete-task')
+
+    taskDiv.dataset.taskID = task.id
+    editBtn.dataset.taskID = task.id
+    deleteBtn.dataset.taskID = task.id
 
     taskTitle.innerText = task.title
     taskDueDate.innerText = task.dueDate
