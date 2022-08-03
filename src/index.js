@@ -13,6 +13,7 @@ const formTitle = document.querySelector('[data-form-title]')
 const formDescription = document.querySelector('[data-form-description]')
 const formDueDate = document.querySelector('[data-form-due-date]')
 const formPriority = document.querySelector('[data-form-priority]')
+const formTitleError = document.querySelector('.title-msg')
 
 // To do list Elements
 const toDoListContainer = document.querySelector('[data-project-display-container]')
@@ -27,7 +28,7 @@ const taskTemplate = document.getElementById('task-template')
 
 // local Storage keys
 const LOCAL_STORAGE_PROJECT_KEY = 'task.projects'
-const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProject'
+const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId'
 
 // Variables
 let projects = loadProjectLists((LOCAL_STORAGE_PROJECT_KEY))
@@ -64,11 +65,32 @@ formCancelBtn.addEventListener('click', (e) => {
 })
 
 formSubmitBtn.addEventListener('click', (e) => {
-  /*
-    get form values
-    create a new tasl
-    append new task to selectedProject tasks
-  */
+  if (formTitle.value == null || formTitle.value === '') {
+    formTitle.classList.add('error')
+    formTitleError.innerHTML = 'Please include a title'
+    return
+  }
+
+  const title = formTitle.value
+  const desc = formDescription.value
+  const dueDate = formDueDate.value
+  const prio = formPriority.value
+
+  const task = createTask(title, desc, dueDate, prio)
+
+  // push to project tasks
+  const selectedProject = projects.find(project => project.id === selectedProjectID)
+  selectedProject.tasks.push(task)
+  saveAndRender()
+  closeForm()
+  resetForm()
+})
+
+formTitle.addEventListener('keydown', (e) => {
+  if (formTitle.value !== '') {
+    formTitle.classList.remove('error')
+    formTitleError.innerHTML = ''
+  }
 })
 
 // functions
@@ -82,15 +104,14 @@ function render() {
   clearElement(projectsContainer)
   renderProjectList()
 
-  // Tasks
   const selectedProject = projects.find(project => project.id === selectedProjectID)
-
-  if (selectedProjectID == null) {
-    toDoListContainer.style.display = 'none'
+  if (selectedProjectID == null|| selectedProjectID == 'null') {
+    toDoListContainer.classList.add('hide')
   } else {
-    toDoListContainer.style.display = ''
-    toDoListTitle.innerText = selectedProject.name
+    toDoListContainer.classList.remove('hide');
+    toDoListTitle.innerText = selectedProject.name;
     clearElement(tasksContainer)
+    renderProjectTask(selectedProject)
   }
 }
 
@@ -116,8 +137,12 @@ function renderProjectTask(selectedProject) {
     const taskTitle = taskElement.querySelector('.task-title')
     const taskDueDate = taskElement.querySelector('.task-dueDate')
 
-    taskTitle.innerText = task.name
-    // tasksContainer.appendChild(taskElement)
+    const editBtn = document.querySelector('.edit-task')
+    const deleteBtn = document.querySelector('.delete-task')
+
+    taskTitle.innerText = task.title
+    taskDueDate.innerText = task.dueDate
+    tasksContainer.appendChild(taskElement)
   })
 }
 
@@ -132,6 +157,9 @@ function resetForm() {
   formDescription.value = ''
   formDueDate.value = ''
   formPriority.value = 'low'
+
+  formTitle.classList.remove('error')
+  formTitleError.innerHTML = ''
 }
 
 // Driver Code

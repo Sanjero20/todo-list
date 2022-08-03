@@ -9,7 +9,6 @@ function loadSelectedProject(ID_key) {
 
 function saveProjectList(key, list) {
   localStorage.setItem(key, JSON.stringify(list))
-  
 }
 
 function saveSelectedProject(key, selectedProject) {

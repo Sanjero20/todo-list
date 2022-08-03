@@ -2,11 +2,11 @@ function createProject(name) {
   return {
     id: Date.now().toString(),
     name: name,
-    task: [],
+    tasks: [],
   }
 }
 
-function createTask(name) {
+function createTask(name, desc, date, prio) {
   return {
     id: Date.now().toString(),
     title: name,

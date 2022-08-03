@@ -32,7 +32,7 @@
       </form>
     </div>
 
-    <div class="todo-list" data-project-display-container>
+    <div class="todo-list hide" data-project-display-container>
       <div class="todo-header">
         <h2 class="project-title" data-project-title>Project Title</h2>
         <i 
@@ -64,6 +64,7 @@
       <form id="input-todo">
         <label for="title"> Title
           <input type="text" name="title" data-form-title>
+          <p class="title-msg"></p>
         </label>
 
         <label for="desc"> Description
@@ -96,9 +97,9 @@
 
   <template id="task-template">
     <div class="task">
-      <p class="task-title">watch something</p>
+      <p class="task-title"></p>
       <div class="task-options">
-        <p class="task-dueDate">No due date</p>
+        <p class="task-dueDate"></p>
         <i class="edit-task fa fa-pencil-square-o" aria-hidden="true"></i>
         <i class="delete-task fa fa-trash" aria-hidden="true"></i>
       </div>

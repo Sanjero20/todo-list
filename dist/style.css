@@ -110,6 +110,10 @@ main.container {
   padding-bottom: 0.5em;
 }
 
+.hide {
+  display: none;
+}
+
 .todo-header {
   background-color: var(--black);
   color: white;
@@ -275,4 +279,12 @@ fieldset {
 
 #submit {
   background-color: green;
+}
+
+.title-msg {
+  color: red;
+}
+
+.error {
+  border: 1px solid red;
 }
