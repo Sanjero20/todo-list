@@ -1,5 +1,6 @@
 import { loadProjectLists, saveProjectList, loadSelectedProject, saveSelectedProject} from "./saveLocal"
 import { formListener, openForm, closeForm, createProject, createTask, resetForm } from "./form"
+import { changeTaskInfoContent, openTaskInfo, taskInfoListener } from "./taskModal"
 import hamburgerMenu from "./hamburger"
 
 // DOM Elements
@@ -14,15 +15,14 @@ const formDescription = document.querySelector('[data-form-description]')
 const formDueDate = document.querySelector('[data-form-due-date]')
 const formPriority = document.querySelector('[data-form-priority]')
 const formTitleError = document.querySelector('.title-msg')
+const formAddTask   = document.getElementById('input-todo')
+const formCancelBtn = document.getElementById('cancel')
+const formSubmitBtn = document.getElementById('submit')
 
 // To do list Elements
 const toDoListContainer = document.querySelector('[data-project-display-container]')
 const toDoListTitle     = document.querySelector('[data-project-title]')
 const tasksContainer    = document.querySelector('[data-tasks]')
-
-const formAddTask   = document.getElementById('input-todo')
-const formCancelBtn = document.getElementById('cancel')
-const formSubmitBtn = document.getElementById('submit')
 
 // Template
 const taskTemplate = document.getElementById('task-template') 
@@ -39,6 +39,7 @@ let TaskSelectedID = null;
 // Event Listener
 hamburgerMenu()
 formListener()
+taskInfoListener()
 
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.tagName.toLowerCase() === 'li') {
@@ -48,12 +49,13 @@ projectsContainer.addEventListener('click', (e) => {
 })
 
 tasksContainer.addEventListener('click', (e) => {
-  if (e.target.tagName.toLowerCase() === 'div') {
+  if (e.target.tagName.toLowerCase() === 'div' || e.target.className === 'task-title') {
     const selectedtaskID = e.target.dataset.taskID
     const selectedProject = projects.find(project => project.id === selectedProjectID)
     const selectedTask = selectedProject.tasks.find(task => task.id === selectedtaskID)
-    console.log(selectedTask)
     // show pop up modal that contains the task information
+    openTaskInfo()    
+    changeTaskInfoContent(selectedTask)
   }
 
   if (e.target.className.toLowerCase() === 'delete-task fa fa-trash') {
@@ -64,7 +66,6 @@ tasksContainer.addEventListener('click', (e) => {
   }
 
   if (e.target.className.toLowerCase() === 'edit-task fa fa-pencil-square-o') {
-    console.log('edit this')
     const selectedTaskID = e.target.dataset.taskID
     TaskSelectedID = selectedTaskID
     const selectedProject = projects.find(project => project.id === selectedProjectID)
@@ -195,6 +196,7 @@ function renderProjectTask(selectedProject) {
     taskDiv.dataset.taskID = task.id
     editBtn.dataset.taskID = task.id
     deleteBtn.dataset.taskID = task.id
+    taskTitle.dataset.taskID = task.id
 
     taskTitle.innerText = task.title
     taskDueDate.innerText = task.dueDate

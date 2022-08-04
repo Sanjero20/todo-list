@@ -59,6 +59,7 @@ function openForm() {
 
 function closeForm(){
   modal.classList.remove('show')
+  
   overlay.classList.remove('show')
 }
 
