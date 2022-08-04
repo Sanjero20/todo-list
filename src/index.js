@@ -1,5 +1,5 @@
 import { loadProjectLists, saveProjectList, loadSelectedProject, saveSelectedProject} from "./saveLocal"
-import { openForm, closeForm, createProject, createTask } from "./form"
+import { formListener, openForm, closeForm, createProject, createTask, resetForm } from "./form"
 import hamburgerMenu from "./hamburger"
 
 // DOM Elements
@@ -22,7 +22,7 @@ const tasksContainer    = document.querySelector('[data-tasks]')
 
 const formAddTask   = document.getElementById('input-todo')
 const formCancelBtn = document.getElementById('cancel')
-// const formSubmitBtn = document.getElementById('submit')
+const formSubmitBtn = document.getElementById('submit')
 
 // Template
 const taskTemplate = document.getElementById('task-template') 
@@ -34,10 +34,11 @@ const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = 'task.selectedProjectId'
 // Variables
 let projects = loadProjectLists((LOCAL_STORAGE_PROJECT_KEY))
 let selectedProjectID = loadSelectedProject(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY)
+let TaskSelectedID = null;
 
 // Event Listener
 hamburgerMenu()
-openForm()
+formListener()
 
 projectsContainer.addEventListener('click', (e) => {
   if (e.target.tagName.toLowerCase() === 'li') {
@@ -60,6 +61,18 @@ tasksContainer.addEventListener('click', (e) => {
     const selectedProject = projects.find(project => project.id === selectedProjectID)
     selectedProject.tasks = selectedProject.tasks.filter(task => task.id !== selectedtaskID)
     saveAndRender()
+  }
+
+  if (e.target.className.toLowerCase() === 'edit-task fa fa-pencil-square-o') {
+    console.log('edit this')
+    const selectedTaskID = e.target.dataset.taskID
+    TaskSelectedID = selectedTaskID
+    const selectedProject = projects.find(project => project.id === selectedProjectID)
+    const selectedTask = selectedProject.tasks.find(task => task.id === selectedTaskID)
+    
+    formSubmitBtn.innerText = 'Edit'
+    openForm()
+    autoFillUpForm(selectedTask)
   }
 })
 
@@ -87,6 +100,7 @@ formCancelBtn.addEventListener('click', (e) => {
 
 formAddTask.addEventListener('submit', (e) => {
   e.preventDefault()
+
   if (formTitle.value == null || formTitle.value === '') {
     formTitle.classList.add('error')
     formTitleError.innerHTML = 'Please include a title'
@@ -98,11 +112,26 @@ formAddTask.addEventListener('submit', (e) => {
   const dueDate = formDueDate.value
   const prio = formPriority.value
 
-  const task = createTask(title, desc, dueDate, prio)
+  if (formSubmitBtn.innerText === 'Submit') {
+    const task = createTask(title, desc, dueDate, prio)
+    // push to project tasks
+    const selectedProject = projects.find(project => project.id === selectedProjectID)
+    selectedProject.tasks.push(task)
+  }
 
-  // push to project tasks
-  const selectedProject = projects.find(project => project.id === selectedProjectID)
-  selectedProject.tasks.push(task)
+  if (formSubmitBtn.innerText === 'Edit') {
+    // edit existing task
+    const selectedProject = projects.find(project => project.id === selectedProjectID)
+    const existingTask = selectedProject.tasks.find(task => task.id === TaskSelectedID)
+
+    existingTask.title = title
+    existingTask.description = desc
+    existingTask.dueDate = dueDate
+    existingTask.priority = prio
+
+    TaskSelectedID = null;
+  }
+  
   saveAndRender()
   closeForm()
   resetForm()
@@ -179,14 +208,11 @@ function clearElement(element) {
   }
 }
 
-function resetForm() {
-  formTitle.value = ''
-  formDescription.value = ''
-  formDueDate.value = ''
-  formPriority.value = 'low'
-
-  formTitle.classList.remove('error')
-  formTitleError.innerHTML = ''
+function autoFillUpForm(obj) {
+  formTitle.value = obj.title
+  formDescription.value = obj.description
+  formDueDate.value = obj.dueDate
+  formPriority.value = obj.priority
 }
 
 // Driver Code
