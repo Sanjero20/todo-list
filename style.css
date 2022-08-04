@@ -64,7 +64,7 @@ main.container {
   width: min(30%, 250px);
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
 .task-project-title {
@@ -213,6 +213,7 @@ main.container {
 }
 
 /* Popup Modal */
+.modal-task-info,
 .modal {
   position: absolute;
   z-index: 1;
@@ -223,17 +224,52 @@ main.container {
   transition: all 300ms ease-in-out;
 }
 
+.modal-task-info.show,
 .modal.show {
   transition: all 300ms ease-in-out;
   transform: translate(-50%, -50%) scale(1);
 }
 
+.modal-task,
 .modal-container {
   padding: 0.75em 0;
   border-radius: 10px;
   width: 300px;
   height: 300px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;;
+}
+
+.modal-task {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-task .task-title {
+  background-color: var(--black);
+  color: white;
+  padding: 0.5em;
+  font-size: 1.25em;
+}
+
+.modal-task p {
+  margin: 0 0.5em;
+}
+
+.modal-task .task-description {
+  margin: 0 0.5em;
+  min-height: 30px;
+  /* border: 1px solid grey;
+  border-radius: 5px; */
+}
+
+.modal-task .task-dueDate {
+  margin: 0 auto;
+  width: 50%;
+  height: 30px;
 }
 
 .overlay-burger,
@@ -299,6 +335,7 @@ fieldset {
 
 #cancel, #submit {
   border: none;
+  width: 100px;
   padding: 10px 25px;
   border-radius: 20px;
   color: white;
@@ -372,3 +409,4 @@ fieldset {
     background-color: #1d2530;
   }
 }
+
