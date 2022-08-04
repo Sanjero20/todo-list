@@ -4,7 +4,6 @@
   --white: #bbbbbb;
   --black: #161b22;
   --icon-size: 1.5em;
-
   --popUp-speed: 300ms;
 }
 
@@ -25,6 +24,10 @@ footer {
 header {
   text-align: start;
   padding: 0 0.5em;
+}
+
+footer {
+  padding: 10px 0;
 }
 
 .header-logo {
@@ -176,6 +179,7 @@ main.container {
   justify-content: space-between;
   border: 1px solid grey;
   border-radius: 25px;
+  gap: 10px;
 }
 
 .task .task-dueDate {
@@ -280,10 +284,22 @@ main.container {
   font-size: small;
 }
 
-.modal-task .task-dueDate {
+.modal-task .date {
+  display: flex;
+  align-items: center;
+}
+
+.modal-task .task-dueDate-title {
   margin: 0.5em;
   height: 30px;
+  font-weight: 700;
 }
+
+.modal-task .task-dueDate {
+  margin: 0;
+  opacity: 0.8;
+  font-size: small;
+} 
 
 .modal-task .task-title .priority {
   padding-right: 0.35em;
@@ -377,7 +393,7 @@ fieldset {
   border: 1px solid red;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   body {
     position: relative;
   }
@@ -412,7 +428,7 @@ fieldset {
     top: 0;
     width: 60%;
     height: 100%;
-    transition: all 500ms ease-in-out;
+    transition: all 350ms ease-out;
     transform: translateX(-100%);
   }
 
@@ -426,6 +442,10 @@ fieldset {
 
   .todo-header {
     background-color: #1d2530;
+  }
+
+  .task .task-dueDate {
+    display: none;
   }
 }
 
