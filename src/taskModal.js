@@ -31,9 +31,9 @@ function changeTaskInfoContent(taskObj) {
 
   const deadline = taskObj.dueDate
   if (deadline === '') {
-    dueDate.innerText = ''
+    dueDate.innerHTML = 'None'
   } else {
-    dueDate.innerHTML = `<strong>Due Date</strong>: ${taskObj.dueDate}`
+    dueDate.innerHTML = taskObj.dueDate
   }
   
 
