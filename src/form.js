@@ -3,7 +3,7 @@ function createProject(name) {
     id: Date.now().toString(),
     name: name,
     tasks: [],
-  }
+  };
 }
 
 function createTask(name, desc, date, prio) {
@@ -13,54 +13,54 @@ function createTask(name, desc, date, prio) {
     description: desc,
     dueDate: date,
     priority: prio,
-  }
+  };
 }
 
-const addTask = document.querySelector('.add-task')
-const modal = document.querySelector('.modal')
-const overlay = document.querySelector('.overlay')
-const formSubmitBtn = document.getElementById('submit')
+const addTask = document.querySelector('.add-task');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const formSubmitBtn = document.getElementById('submit');
 
 // Form elements
-const formTitle = document.querySelector('[data-form-title]')
-const formDescription = document.querySelector('[data-form-description]')
-const formDueDate = document.querySelector('[data-form-due-date]')
-const formPriority = document.querySelector('[data-form-priority]')
-const formTitleError = document.querySelector('.title-msg')
+const formTitle = document.querySelector('[data-form-title]');
+const formDescription = document.querySelector('[data-form-description]');
+const formDueDate = document.querySelector('[data-form-due-date]');
+const formPriority = document.querySelector('[data-form-priority]');
+const formTitleError = document.querySelector('.title-msg');
 
 function formListener() {
   addTask.addEventListener('click', (e) => {
     if (formSubmitBtn.innerText !== 'Submit') {
-      resetForm()
+      resetForm();
     }
-    openForm()
-  })
+    openForm();
+  });
 
   overlay.addEventListener('click', (e) => {
-    closeForm()
-  })
+    closeForm();
+  });
 }
 
 function resetForm() {
-  formTitle.value = ''
-  formDescription.value = ''
-  formDueDate.value = ''
-  formPriority.value = 'low'
+  formTitle.value = '';
+  formDescription.value = '';
+  formDueDate.value = '';
+  formPriority.value = 'low';
 
-  formTitle.classList.remove('error')
-  formTitleError.innerHTML = ''
-  formSubmitBtn.innerText = 'Submit'
+  formTitle.classList.remove('error');
+  formTitleError.innerHTML = '';
+  formSubmitBtn.innerText = 'Submit';
 }
 
 function openForm() {
-  modal.classList.add('show')
-  overlay.classList.add('show')
+  modal.classList.add('show');
+  overlay.classList.add('show');
 }
 
-function closeForm(){
-  modal.classList.remove('show')
-  
-  overlay.classList.remove('show')
+function closeForm() {
+  modal.classList.remove('show');
+
+  overlay.classList.remove('show');
 }
 
 export {
@@ -70,4 +70,4 @@ export {
   createProject,
   createTask,
   resetForm,
-}
+};
